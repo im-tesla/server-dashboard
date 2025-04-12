@@ -2,12 +2,6 @@
 
 A responsive, secure dashboard for monitoring your home server resources and services with both desktop and mobile support.
 
-![Desktop Screenshot](screenshot-desktop.png)  
-*Desktop version of the dashboard*
-
-![Mobile Screenshot](screenshot-mobile.png)  
-*Mobile version of the dashboard*
-
 ## Features
 
 - Real-time System Monitoring showing CPU usage percentage, memory usage (used/total), disk space usage (used/total), and system uptime in days
@@ -17,9 +11,9 @@ A responsive, secure dashboard for monitoring your home server resources and ser
 
 ## Technologies Used
 
-Frontend: HTML5, CSS3 with Tailwind CSS styling, Font Awesome Pro icons, and JavaScript for dynamic updates  
-Backend: Python Flask framework with psutil for system monitoring and bcrypt for password hashing  
-Infrastructure: Nginx reverse proxy with Systemd service monitoring
+- Frontend: HTML5, CSS3 with Tailwind CSS styling, Font Awesome Pro icons, and JavaScript for dynamic updates  
+- Backend: Python Flask framework with psutil for system monitoring and bcrypt for password hashing  
+- Infrastructure: Nginx reverse proxy with Systemd service monitoring
 
 ## Installation
 
@@ -54,12 +48,11 @@ Modify the frontend navigation menu and stat cards as needed
 To add similar protection to other services via Nginx, use auth_request directive pointing to /auth-endpoint along with your proxy settings.
 
 ## Screenshots
+![Desktop Screenshot](screenshot-desktop.png)  
+*Desktop version of the dashboard*
 
-Include your actual screenshots here showing both desktop and mobile views.
-
-## License
-
-MIT License
+![Mobile Screenshot](screenshot-mobile.png)  
+*Mobile version of the dashboard*
 
 ## Contributing
 
