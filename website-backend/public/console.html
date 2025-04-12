@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-gray-100">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Home Server</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/aquawolf04/font-awesome-pro@5cd1511/css/all.css">
+  <style>
+    * {
+      transition: all 0.3s ease;
+    }
+  </style>
+</head>
+<body class="h-full">
+  <div class="min-h-full">
+    <!-- Sidebar for desktop -->
+    <div class="hidden lg:fixed lg:inset-y-0 lg:flex lg:w-64 lg:flex-col">
+      <div class="flex min-h-0 flex-1 flex-col bg-slate-700 p-2">
+        <div class="flex flex-1 flex-col overflow-y-auto">
+          <nav class="flex-1 space-y-2 px-2 py-4">
+            <a href="/" class="hover:bg-slate-600 text-white group flex items-center px-2 py-3 text-sm font-medium rounded-md">
+              <i class="fas fa-home mr-3 flex-shrink-0"></i>
+              Dashboard
+            </a>
+            <a href="console.html" class="bg-slate-600 text-slate-100 hover:bg-slate-600 hover:bg-opacity-75 group flex items-center px-2 py-3 text-sm font-medium rounded-md">
+              <i class="fas fa-square-terminal mr-3 flex-shrink-0"></i>
+              Console
+            </a>
+            <a href="" class="text-slate-100 hover:bg-slate-600 hover:bg-opacity-75 group flex items-center px-2 py-3 text-sm font-medium rounded-md">
+              <i class="fas fa-hdd mr-3 flex-shrink-0"></i>
+              File Browser
+            </a>
+            <a href="cctv.html" class="text-slate-100 hover:bg-slate-600 hover:bg-opacity-75 group flex items-center px-2 py-3 text-sm font-medium rounded-md">
+              <i class="fa-solid fa-camera-cctv mr-3 flex-shrink-0"></i>
+              CCTV
+            </a>
+            <a href="" class="text-slate-100 hover:bg-slate-600 hover:bg-opacity-75 group flex items-center px-2 py-3 text-sm font-medium rounded-md">
+              <i class="fas fa-network-wired mr-3 flex-shrink-0"></i>
+              Network
+            </a>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile sidebar -->
+    <div class="lg:hidden fixed inset-0 z-40 hidden" id="mobile-sidebar">
+      <div class="fixed inset-0 bg-gray-600 bg-opacity-75" aria-hidden="true"></div>
+      <div class="fixed inset-0 flex z-40">
+        <div class="relative flex w-full max-w-xs flex-1 flex-col bg-slate-700">
+          <div class="absolute top-0 right-0 -mr-12 pt-2">
+            <button onclick="closesidebar()" type="button" class="ml-1 flex h-10 w-10 items-center justify-center rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+              <span class="sr-only">Close sidebar</span>
+              <i class="fas fa-times text-white"></i>
+            </button>
+          </div>
+          <div class="flex flex-1 flex-col overflow-y-auto">
+            <nav class="flex-1 space-y-2 px-2 py-4">
+              <a href="/" class="text-white group flex items-center px-2 py-3 text-sm font-medium rounded-md">
+                <i class="fas fa-home mr-3 flex-shrink-0"></i>
+                Dashboard
+              </a>
+              <a href="console.html" class="bg-slate-600 text-slate-100 hover:bg-slate-600 hover:bg-opacity-75 group flex items-center px-2 py-3 text-sm font-medium rounded-md">
+                <i class="fas fa-square-terminal mr-3 flex-shrink-0"></i>
+                Console
+              </a>
+              <a href="" class="text-slate-100 hover:bg-slate-600 hover:bg-opacity-75 group flex items-center px-2 py-3 text-sm font-medium rounded-md">
+                <i class="fas fa-hdd mr-3 flex-shrink-0"></i>
+                File Browser
+              </a>
+              <a href="cctv.html" class="text-slate-100 hover:bg-slate-600 hover:bg-opacity-75 group flex items-center px-2 py-3 text-sm font-medium rounded-md">
+                <i class="fa-solid fa-camera-cctv mr-3 flex-shrink-0"></i>
+                CCTV
+              </a>
+              <a href="" class="text-slate-100 hover:bg-slate-600 hover:bg-opacity-75 group flex items-center px-2 py-3 text-sm font-medium rounded-md">
+                <i class="fas fa-network-wired mr-3 flex-shrink-0"></i>
+                Network
+              </a>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main content -->
+    <div class="lg:pl-64 flex flex-col">
+      <!-- Mobile top bar -->
+      <div class="sticky top-0 z-10 flex h-16 flex-shrink-0 bg-white shadow lg:hidden">
+        <button onclick="togglesidebar()" type="button" class="px-4 text-gray-500">
+          <span class="sr-only">Open sidebar</span>
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="flex flex-1 justify-between px-4">
+          <div class="flex flex-1 items-center">
+            <h1 class="text-lg font-bold text-gray-900">Dashboard</h1>
+          </div>
+        </div>
+      </div>
+
+      <main class="flex-1">
+        <div class="py-6">
+          <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <h1 class="text-2xl font-semibold text-gray-900">Console</h1>
+          </div>
+          <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="mt-6">
+                
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+  <script>
+    // mobile sidebar
+    function togglesidebar() {
+      var sidebar = document.getElementById("mobile-sidebar");
+      sidebar.classList.toggle("hidden");
+    }
+
+    function closesidebar() {
+      var sidebar = document.getElementById("mobile-sidebar");
+      sidebar.classList.add("hidden");
+    }
+  </script>
+</body>
+</html>

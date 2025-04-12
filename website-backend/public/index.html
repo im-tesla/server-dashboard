@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-gray-100">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Home Server</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/aquawolf04/font-awesome-pro@5cd1511/css/all.css">
+  <style>
+    * {
+      transition: all 0.3s ease;
+    }
+  </style>
+</head>
+<body class="h-full">
+  <div class="min-h-full">
+    <!-- Sidebar for desktop -->
+    <div class="hidden lg:fixed lg:inset-y-0 lg:flex lg:w-64 lg:flex-col">
+      <div class="flex min-h-0 flex-1 flex-col bg-slate-700 p-2">
+        <div class="flex flex-1 flex-col overflow-y-auto">
+          <nav class="flex-1 space-y-2 px-2 py-4">
+            <a class="bg-slate-600 text-white group flex items-center px-2 py-3 text-sm font-medium rounded-md">
+              <i class="fas fa-home mr-3 flex-shrink-0"></i>
+              Dashboard
+            </a>
+            <a href="console.html" class="text-slate-100 hover:bg-slate-600 hover:bg-opacity-75 group flex items-center px-2 py-3 text-sm font-medium rounded-md">
+              <i class="fas fa-square-terminal mr-3 flex-shrink-0"></i>
+              Console
+            </a>
+            <a class="text-slate-100 hover:bg-slate-600 hover:bg-opacity-75 group flex items-center px-2 py-3 text-sm font-medium rounded-md">
+              <i class="fas fa-hdd mr-3 flex-shrink-0"></i>
+              File Browser
+            </a>
+            <a href="cctv.html" class="text-slate-100 hover:bg-slate-600 hover:bg-opacity-75 group flex items-center px-2 py-3 text-sm font-medium rounded-md">
+              <i class="fa-solid fa-camera-cctv mr-3 flex-shrink-0"></i>
+              CCTV
+            </a>
+            <a class="text-slate-100 hover:bg-slate-600 hover:bg-opacity-75 group flex items-center px-2 py-3 text-sm font-medium rounded-md">
+              <i class="fas fa-network-wired mr-3 flex-shrink-0"></i>
+              Network
+            </a>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile sidebar -->
+    <div class="lg:hidden fixed inset-0 z-40 hidden" id="mobile-sidebar">
+      <div class="fixed inset-0 bg-gray-600 bg-opacity-75" aria-hidden="true"></div>
+      <div class="fixed inset-0 flex z-40">
+        <div class="relative flex w-full max-w-xs flex-1 flex-col bg-slate-700">
+          <div class="absolute top-0 right-0 -mr-12 pt-2">
+            <button onclick="closesidebar()" type="button" class="ml-1 flex h-10 w-10 items-center justify-center rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+              <span class="sr-only">Close sidebar</span>
+              <i class="fas fa-times text-white"></i>
+            </button>
+          </div>
+          <div class="flex flex-1 flex-col overflow-y-auto">
+            <nav class="flex-1 space-y-2 px-2 py-4">
+              <a href="/" class="bg-slate-600 hover:bg-slate-600 text-white group flex items-center px-2 py-3 text-sm font-medium rounded-md">
+                <i class="fas fa-home mr-3 flex-shrink-0"></i>
+                Dashboard
+              </a>
+              <a href="console.html" class="text-slate-100 hover:bg-slate-600 hover:bg-opacity-75 group flex items-center px-2 py-3 text-sm font-medium rounded-md">
+                <i class="fas fa-square-terminal mr-3 flex-shrink-0"></i>
+                Console
+              </a>
+              <a href="" class="text-slate-100 hover:bg-slate-600 hover:bg-opacity-75 group flex items-center px-2 py-3 text-sm font-medium rounded-md">
+                <i class="fas fa-hdd mr-3 flex-shrink-0"></i>
+                File Browser
+              </a>
+              <a href="cctv.html" class="text-slate-100 hover:bg-slate-600 hover:bg-opacity-75 group flex items-center px-2 py-3 text-sm font-medium rounded-md">
+                <i class="fa-solid fa-camera-cctv mr-3 flex-shrink-0"></i>
+                CCTV
+              </a>
+              <a href="" class="text-slate-100 hover:bg-slate-600 hover:bg-opacity-75 group flex items-center px-2 py-3 text-sm font-medium rounded-md">
+                <i class="fas fa-network-wired mr-3 flex-shrink-0"></i>
+                Network
+              </a>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main content -->
+    <div class="lg:pl-64 flex flex-col">
+      <!-- Mobile top bar -->
+      <div class="sticky top-0 z-10 flex h-16 flex-shrink-0 bg-white shadow lg:hidden">
+        <button onclick="togglesidebar()" type="button" class="px-4 text-gray-500">
+          <span class="sr-only">Open sidebar</span>
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="flex flex-1 justify-between px-4">
+          <div class="flex flex-1 items-center">
+            <h1 class="text-lg font-bold text-gray-900">Dashboard</h1>
+          </div>
+        </div>
+      </div>
+
+      <main class="flex-1">
+        <div class="py-6">
+          <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <h1 class="text-2xl font-semibold text-gray-900">Overview</h1>
+          </div>
+          <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <!-- Stats cards -->
+            <div class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              <!-- CPU Usage -->
+              <div class="overflow-hidden rounded-lg bg-white shadow">
+                <div class="p-5">
+                  <div class="flex items-center">
+                    <div class="flex-shrink-0 bg-red-500 rounded-md p-3 w-10 h-10 flex items-center justify-center">
+                      <i class="fas fa-microchip text-white"></i>
+                    </div>
+                    <div class="ml-5 w-0 flex-1">
+                      <dl>
+                        <dt class="truncate text-sm font-medium text-gray-500">CPU</dt>
+                        <dd>
+                          <div id="cpuUsage" class="text-lg font-medium text-gray-900"></div>
+                        </dd>
+                      </dl>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Memory Usage -->
+              <div class="overflow-hidden rounded-lg bg-white shadow">
+                <div class="p-5">
+                  <div class="flex items-center">
+                    <div class="flex-shrink-0 bg-green-500 rounded-md p-3 w-10 h-10 flex items-center justify-center">
+                      <i class="fas fa-memory text-white"></i>
+                    </div>
+                    <div class="ml-5 w-0 flex-1">
+                      <dl>
+                        <dt class="truncate text-sm font-medium text-gray-500">RAM</dt>
+                        <dd>
+                          <div id="memoryUsage" class="text-lg font-medium text-gray-900"></div>
+                        </dd>
+                      </dl>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Storage -->
+              <div class="overflow-hidden rounded-lg bg-white shadow">
+                <div class="p-5">
+                  <div class="flex items-center">
+                    <div class="flex-shrink-0 bg-amber-500 rounded-md p-3 w-10 h-10 flex items-center justify-center">
+                      <i class="fas fa-hdd text-white"></i>
+                    </div>
+                    <div class="ml-5 w-0 flex-1">
+                      <dl>
+                        <dt class="truncate text-sm font-medium text-gray-500">Disk</dt>
+                        <dd>
+                          <div id="diskUsage" class="text-lg font-medium text-gray-900"></div>
+                        </dd>
+                      </dl>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Uptime -->
+              <div class="overflow-hidden rounded-lg bg-white shadow">
+                <div class="p-5">
+                  <div class="flex items-center">
+                    <div class="flex-shrink-0 bg-yellow-500 rounded-md p-3 w-10 h-10 flex items-center justify-center">
+                      <i class="fas fa-clock text-white"></i>
+                    </div>
+                    <div class="ml-5 w-0 flex-1">
+                      <dl>
+                        <dt class="truncate text-sm font-medium text-gray-500">Uptime</dt>
+                        <dd>
+                          <div id="upTime" class="text-lg font-medium text-gray-900"></div>
+                        </dd>
+                      </dl>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Services section -->
+            <div class="mt-8">
+              <h2 class="text-xl font-semibold text-gray-900">Running Services</h2>
+              <div class="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
+                <!-- Service 1 -->
+                <div class="relative rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm flex items-center space-x-3 ">
+                  <div class="flex-shrink-0 bg-green-500 rounded-md p-3 w-10 h-10 flex items-center justify-center">
+                    <i class="fas fa-microphone text-white"></i>
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <a class="focus:outline-none">
+                      <span class="absolute inset-0" aria-hidden="true"></span>
+                      <p class="text-sm font-medium text-gray-900">kinectaudio</p>
+                      <p class="text-sm text-gray-500 truncate">hw:Loopback,1,0</p>
+                    </a>
+                  </div>
+                  <div id="kinectaudio" class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Active</div>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="relative rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm flex items-center space-x-3 ">
+                  <div class="flex-shrink-0 bg-emerald-500 rounded-md p-3 w-10 h-10 flex items-center justify-center">
+                    <i class="fas fa-camera-cctv text-white"></i>
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <a class="focus:outline-none">
+                      <span class="absolute inset-0" aria-hidden="true"></span>
+                      <p class="text-sm font-medium text-gray-900">kinectvideo</p>
+                      <p class="text-sm text-gray-500 truncate">Port 5000</p>
+                    </a>
+                  </div>
+                  <div id="kinectvideo" class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Active</div>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="relative rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm flex items-center space-x-3 ">
+                  <div class="flex-shrink-0 bg-teal-500 rounded-md p-3 w-10 h-10 flex items-center justify-center">
+                    <i class="fas fa-server text-white"></i>
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <a class="focus:outline-none">
+                      <span class="absolute inset-0" aria-hidden="true"></span>
+                      <p class="text-sm font-medium text-gray-900">dashboard-backend</p>
+                      <p class="text-sm text-gray-500 truncate">Port 3000</p>
+                    </a>
+                  </div>
+                  <div id="dashboard-backend" class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Active</div>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="relative rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm flex items-center space-x-3 ">
+                  <div class="flex-shrink-0 bg-cyan-500 rounded-md p-3 w-10 h-10 flex items-center justify-center">
+                    <i class="fas fa-globe text-white"></i>
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <a class="focus:outline-none">
+                      <span class="absolute inset-0" aria-hidden="true"></span>
+                      <p class="text-sm font-medium text-gray-900">nginx</p>
+                      <p class="text-sm text-gray-500 truncate">Port 80</p>
+                    </a>
+                  </div>
+                  <div id="nginx" class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Active</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    // mobile sidebar
+    function togglesidebar() {
+      var sidebar = document.getElementById("mobile-sidebar");
+      sidebar.classList.toggle("hidden");
+    }
+
+    function closesidebar() {
+      var sidebar = document.getElementById("mobile-sidebar");
+      sidebar.classList.add("hidden");
+    }
+
+    function updateStats() {
+      fetch('https://dashboard.imtesla.pl/stats/')
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById('cpuUsage').innerText = `${data.cpu_usage}%`;
+          document.getElementById('memoryUsage').innerText = `${data.memory_usage} / ${data.memory_total} GB`;
+          document.getElementById('diskUsage').innerText = `${data.disk_usage} / ${data.disk_total} GB`;
+          document.getElementById('upTime').innerText = `${Math.floor(data.uptime_days)} days`;
+        })
+        .catch(error => console.error('Error fetching stats:', error));
+    }
+
+    function updateServices() {
+      fetch('https://dashboard.imtesla.pl/services/')
+        .then(response => response.json())
+        .then(data => {
+          for (const [service, status] of Object.entries(data)) {
+            const serviceElement = document.getElementById(service);
+            if (status) {
+              serviceElement.classList.remove('bg-red-100', 'text-red-800');
+              serviceElement.classList.add('bg-green-100', 'text-green-800');
+              serviceElement.innerText = 'Active';
+            } else {
+              serviceElement.classList.remove('bg-green-100', 'text-green-800');
+              serviceElement.classList.add('bg-red-100', 'text-red-800');
+              serviceElement.innerText = 'Inactive';
+            }
+          }
+        })
+        .catch(error => console.error('Error fetching services:', error));
+    }
+
+    // stats
+    updateStats()
+    setInterval(() => {
+      updateStats();
+    }, 2000);
+
+    //services
+    updateServices()
+    setInterval(() => {
+      updateServices();
+    }, 6000);
+  </script>
+</body>
+</html>
